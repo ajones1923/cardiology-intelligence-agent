@@ -255,7 +255,7 @@ class GDMTResponse(BaseModel):
 # =====================================================================
 
 @router.post("/query", response_model=QueryResponse)
-async def cardio_query(request: QueryRequest, req: Request):
+def cardio_query(request: QueryRequest, req: Request):
     """Answer a cardiology clinical question using RAG with guideline citations."""
     engine = req.app.state.engine
     if not engine:
@@ -272,10 +272,10 @@ async def cardio_query(request: QueryRequest, req: Request):
             req.app.state.metrics["query_requests_total"] += 1
         return QueryResponse(
             answer=result.answer,
-            evidence=[vars(e) for e in result.evidence] if result.evidence else [],
-            guidelines_cited=result.guidelines_cited or [],
+            evidence=[vars(e) for e in result.results] if result.results else [],
+            guidelines_cited=[c.get("text", str(c)) for c in result.citations] if result.citations else [],
             confidence=result.confidence,
-            workflow_applied=result.workflow_applied,
+            workflow_applied=result.workflow.value if result.workflow else None,
         )
     except Exception as exc:
         logger.error(f"Query failed: {exc}")
@@ -283,7 +283,7 @@ async def cardio_query(request: QueryRequest, req: Request):
 
 
 @router.post("/search", response_model=SearchResponse)
-async def cardio_search(request: SearchRequest, req: Request):
+def cardio_search(request: SearchRequest, req: Request):
     """Semantic search across cardiology knowledge collections."""
     engine = req.app.state.engine
     if not engine:
@@ -308,7 +308,7 @@ async def cardio_search(request: SearchRequest, req: Request):
 
 
 @router.post("/find-related")
-async def find_related(
+def find_related(
     entity: str,
     entity_type: str = "condition",
     top_k: int = 10,
