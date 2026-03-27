@@ -1,5 +1,10 @@
 # Cardiology Intelligence Agent
 
+
+![Architecture Infographic](docs/images/infographic.jpg)
+
+*Source: [cardiology-intelligence-agent](https://github.com/ajones1923/cardiology-intelligence-agent)*
+
 RAG-powered cardiovascular clinical decision support system built on Milvus, Claude, and BGE-small-en-v1.5. Part of the HCLS AI Factory precision medicine platform.
 
 Synthesizes cardiac imaging, electrophysiology, hemodynamics, heart failure management, valvular disease, preventive cardiology, interventional data, and cardio-oncology surveillance into guideline-aligned clinical recommendations using ACC/AHA/ESC evidence.
