@@ -47,12 +47,9 @@ from pymilvus import (
     utility,
     Collection,
     CollectionSchema,
-    FieldSchema,
-    DataType,
 )
 from src.collections import (
     ALL_COLLECTIONS,
-    EMBEDDING_DIM,
     INDEX_TYPE,
     METRIC_TYPE,
     NLIST,

@@ -19,10 +19,8 @@ from src.gdmt_optimizer import (
 from src.models import (
     EjectionFractionCategory,
     EvidenceLevel,
-    GDMTMedication,
     GDMTPillar,
     GDMTRecommendation,
-    GDMTStatus,
     GuidelineClass,
     HeartFailureClass,
 )

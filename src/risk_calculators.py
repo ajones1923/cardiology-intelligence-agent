@@ -30,13 +30,10 @@ import math
 from typing import Any, Dict, List, Optional, Tuple
 
 from src.models import (
-    EvidenceLevel,
-    GuidelineClass,
     HeartFailureClass,
     RiskScoreInput,
     RiskScoreResult,
     RiskScoreType,
-    SeverityLevel,
 )
 
 

@@ -10,8 +10,7 @@ Author: Adam Jones
 Date: March 2026
 """
 
-import math
-from typing import Dict, List, Optional
+from typing import List, Optional
 
 from fastapi import APIRouter, HTTPException, Request
 from loguru import logger
@@ -341,7 +340,7 @@ def find_related(
 
     try:
         return engine.find_related(entity=entity, entity_type=entity_type)
-    except Exception as exc:
+    except Exception:
         raise HTTPException(status_code=500, detail="Internal processing error")
 
 

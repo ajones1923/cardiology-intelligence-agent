@@ -21,7 +21,6 @@ from __future__ import annotations
 import logging
 import re
 from copy import deepcopy
-from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Tuple
 
 from src.models import (
@@ -33,7 +32,6 @@ from src.models import (
     GDMTStatus,
     GuidelineClass,
     HeartFailureClass,
-    SeverityLevel,
 )
 
 logger = logging.getLogger(__name__)
@@ -2458,7 +2456,6 @@ class GDMTOptimizer:
                 )
                 return
 
-            preferred = "carvedilol"
             rec.recommendations.append(
                 f"INITIATE BETA-BLOCKER: Start carvedilol 3.125 mg BID "
                 f"(Class I, LOE A, COPERNICUS trial). Titrate every 2 weeks to "

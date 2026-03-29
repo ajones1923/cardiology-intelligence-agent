@@ -23,21 +23,11 @@ Date: March 2026
 
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 from .models import (
     CardioWorkflowType,
-    EvidenceLevel,
-    GuidelineClass,
-    ImagingModality,
-    SeverityLevel,
     WorkflowResult,
-)
-from .collections import (
-    ALL_COLLECTIONS,
-    COLLECTION_NAMES,
-    WORKFLOW_COLLECTION_WEIGHTS,
-    get_search_weights,
 )
 
 
@@ -1428,7 +1418,7 @@ class CardioIntelligenceAgent:
             List of sub-question strings (typically 2-4 questions).
         """
         sub_questions: List[str] = []
-        q_upper = plan.question.upper()
+        plan.question.upper()
 
         condition_label = plan.conditions[0] if plan.conditions else "the condition"
         drug_label = plan.drugs[0] if plan.drugs else "the medication"

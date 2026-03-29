@@ -13,7 +13,6 @@ from __future__ import annotations
 import json
 import unittest
 from datetime import datetime
-from unittest.mock import MagicMock, patch
 
 from src.export import (
     REPORT_TEMPLATES,
@@ -30,13 +29,7 @@ from src.export import (
     format_risk_score_table,
 )
 from src.models import (
-    CardioWorkflowType,
-    EvidenceLevel,
-    GuidelineClass,
-    RiskScoreResult,
-    RiskScoreType,
     SeverityLevel,
-    WorkflowResult,
 )
 
 

@@ -10,20 +10,13 @@ Date: March 2026
 
 import sys
 from pathlib import Path
-from unittest.mock import MagicMock, patch
 
-import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from src.models import (
     CardioWorkflowType,
     EjectionFractionCategory,
-    EvidenceLevel,
-    GDMTPillar,
-    GDMTStatus,
-    GuidelineClass,
-    HeartFailureClass,
     RiskScoreInput,
     RiskScoreResult,
     RiskScoreType,

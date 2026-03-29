@@ -35,7 +35,7 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Tuple
 
-from src.models import CrossModalTrigger, ImagingModality, SeverityLevel
+from src.models import CrossModalTrigger, SeverityLevel
 
 logger = logging.getLogger(__name__)
 

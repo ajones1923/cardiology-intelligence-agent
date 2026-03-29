@@ -13,7 +13,7 @@ Author: Adam Jones
 Date: March 2026
 """
 
-from typing import Any, Dict, List
+from typing import List
 
 from .base import BaseIngestParser, IngestRecord
 

@@ -12,7 +12,6 @@ monitoring.
 """
 
 import pytest
-from unittest.mock import MagicMock
 
 from src.models import (
     CardioWorkflowType,
@@ -20,8 +19,6 @@ from src.models import (
     HeartFailureClass,
     HeartFailureStage,
     SeverityLevel,
-    ValveSeverity,
-    CardiotoxicityRisk,
     AnticoagulationRecommendation,
     WorkflowResult,
 )

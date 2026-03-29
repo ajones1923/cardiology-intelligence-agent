@@ -12,7 +12,6 @@ from __future__ import annotations
 
 import unittest
 from abc import ABC
-from unittest.mock import MagicMock, patch
 
 from src.ingest.base import BaseIngestParser, IngestRecord
 

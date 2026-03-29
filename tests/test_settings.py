@@ -11,7 +11,6 @@ Date: March 2026
 from __future__ import annotations
 
 import unittest
-from unittest.mock import patch
 
 from config.settings import CardioSettings
 

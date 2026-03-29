@@ -5,10 +5,8 @@ Tests actual HTTP request/response cycles with mocked backends.
 
 import sys
 import threading
-import time
 from contextlib import asynccontextmanager
 from pathlib import Path
-from unittest.mock import MagicMock, patch
 
 import pytest
 

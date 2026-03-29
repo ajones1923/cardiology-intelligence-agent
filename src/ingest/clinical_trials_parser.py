@@ -19,7 +19,6 @@ import time
 from typing import Any, Dict, List, Optional
 
 import requests
-from loguru import logger
 
 from .base import BaseIngestParser, IngestRecord
 

@@ -2004,7 +2004,7 @@ class QueryExpander:
             ``genes``, ``imaging_modalities``, ``procedures``,
             ``biomarkers``); values are lists of matched entity strings.
         """
-        text_lower = text.lower()
+        text.lower()
         detected: Dict[str, List[str]] = {}
 
         for category, entities in _ENTITY_CATEGORIES.items():

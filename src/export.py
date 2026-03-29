@@ -25,17 +25,11 @@ from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Union
 
 from .models import (
-    CardioWorkflowType,
     CrossModalTrigger,
-    EjectionFractionCategory,
     EvidenceLevel,
-    GDMTPillar,
     GDMTRecommendation,
-    GDMTStatus,
     GuidelineClass,
-    HeartFailureStage,
     RiskScoreResult,
-    RiskScoreType,
     SeverityLevel,
     WorkflowResult,
 )

@@ -13,23 +13,17 @@ WorkflowEngine for unified dispatch.
 from __future__ import annotations
 
 import logging
-import math
 from abc import ABC, abstractmethod
 from datetime import datetime, timezone
 from typing import Dict, List, Optional
 
 from src.models import (
     AnticoagulationRecommendation,
-    CADRADSScore,
     CardiotoxicityRisk,
     CardioWorkflowType,
     EjectionFractionCategory,
-    EvidenceLevel,
-    GuidelineClass,
     HeartFailureClass,
     HeartFailureStage,
-    ImagingModality,
-    LGEPattern,
     RiskScoreResult,
     RiskScoreType,
     SeverityLevel,
@@ -244,19 +238,16 @@ class CADAssessmentWorkflow(BaseCardioWorkflow):
         # --- Calcium score risk stratification ---
         cac = int(inputs["calcium_score"])
         if cac == 0:
-            cac_risk = "very low"
             cac_sev = SeverityLevel.LOW
             findings.append(
                 f"Calcium score {cac}: very low risk (zero plaque burden)"
             )
         elif cac < 100:
-            cac_risk = "low"
             cac_sev = SeverityLevel.LOW
             findings.append(
                 f"Calcium score {cac}: low risk (mild plaque burden)"
             )
         elif cac < 300:
-            cac_risk = "moderate"
             cac_sev = SeverityLevel.MODERATE
             findings.append(
                 f"Calcium score {cac}: moderate risk (significant plaque burden)"
@@ -265,7 +256,6 @@ class CADAssessmentWorkflow(BaseCardioWorkflow):
                 "Intensify statin therapy; target LDL <70 mg/dL"
             )
         elif cac < 1000:
-            cac_risk = "high"
             cac_sev = SeverityLevel.HIGH
             findings.append(
                 f"Calcium score {cac}: high risk (extensive plaque burden)"
@@ -277,7 +267,6 @@ class CADAssessmentWorkflow(BaseCardioWorkflow):
                 "Consider functional stress testing to assess ischaemia"
             )
         else:
-            cac_risk = "very high"
             cac_sev = SeverityLevel.CRITICAL
             findings.append(
                 f"Calcium score {cac}: very high risk (>=1000; severe, "
@@ -1719,14 +1708,12 @@ class StressTestWorkflow(BaseCardioWorkflow):
             dts = ex_time - (5.0 * st_dev) - (4.0 * angina)
 
             if dts >= 5:
-                dts_risk = "Low"
                 dts_sev = SeverityLevel.LOW
                 findings.append(
                     f"Duke Treadmill Score: {dts:.1f} — Low risk "
                     "(annual mortality <1%)"
                 )
             elif dts >= -10:
-                dts_risk = "Moderate"
                 dts_sev = SeverityLevel.MODERATE
                 findings.append(
                     f"Duke Treadmill Score: {dts:.1f} — Moderate risk "
@@ -1737,7 +1724,6 @@ class StressTestWorkflow(BaseCardioWorkflow):
                     "or nuclear perfusion)"
                 )
             else:
-                dts_risk = "High"
                 dts_sev = SeverityLevel.HIGH
                 findings.append(
                     f"Duke Treadmill Score: {dts:.1f} — High risk "
@@ -3029,7 +3015,7 @@ class PostMIWorkflow(BaseCardioWorkflow):
             recommendations.append("Initiate ticagrelor 90 mg BID (preferred ACS P2Y12)")
 
         # --- Beta-blocker ---
-        has_bb = any(
+        any(
             d in " ".join(current_meds)
             for d in ["metoprolol", "carvedilol", "bisoprolol", "atenolol"]
         )
@@ -3289,7 +3275,6 @@ class MyocarditisPericarditisWorkflow(BaseCardioWorkflow):
             )
 
         # --- Biopsy indications ---
-        biopsy_indicated = False
         if biopsy:
             findings.append(f"Endomyocardial biopsy result: {biopsy}")
         else:
@@ -3299,7 +3284,6 @@ class MyocarditisPericarditisWorkflow(BaseCardioWorkflow):
             if etiology in ("giant_cell", "eosinophilic"):
                 biopsy_reasons.append(f"suspected {etiology} myocarditis")
             if biopsy_reasons:
-                biopsy_indicated = True
                 recommendations.append(
                     "Endomyocardial biopsy indicated: "
                     + "; ".join(biopsy_reasons)

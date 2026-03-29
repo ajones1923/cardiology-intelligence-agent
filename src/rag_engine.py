@@ -30,31 +30,19 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any, Dict, Generator, List, Optional, Tuple
+from typing import Any, Dict, Generator, List, Optional
 
 from config.settings import settings
 
 from .models import (
     CardioWorkflowType,
-    SeverityLevel,
-    WorkflowResult,
 )
 from .collections import (
-    ALL_COLLECTIONS,
-    COLLECTION_NAMES,
-    WORKFLOW_COLLECTION_WEIGHTS,
     get_all_collection_names,
-    get_search_weights,
 )
 from .agent import (
     CARDIO_SYSTEM_PROMPT,
     WORKFLOW_COLLECTION_BOOST,
-    CARDIO_CONDITIONS,
-    CARDIO_BIOMARKERS,
-    CARDIO_DRUGS,
-    CARDIO_GENES,
-    CARDIO_IMAGING_MODALITIES,
-    CARDIO_GUIDELINES,
 )
 
 logger = logging.getLogger(__name__)
@@ -1195,7 +1183,7 @@ class CardioRAGEngine:
 
         # Factor 2: Collection diversity (0-0.3)
         unique_collections = len(set(r.collection for r in results))
-        total_collections = len(COLLECTION_CONFIG)
+        len(COLLECTION_CONFIG)
         diversity_score = min(unique_collections / 4, 1.0) * 0.3
 
         # Factor 3: Average score of top results (0-0.2)
@@ -1506,7 +1494,7 @@ def create_rag_engine(
     # Attempt auto-configuration if components not provided
     if milvus_client is None:
         try:
-            from pymilvus import connections, MilvusClient
+            from pymilvus import MilvusClient
             milvus_client = MilvusClient(
                 uri=f"http://{settings.MILVUS_HOST}:{settings.MILVUS_PORT}",
             )

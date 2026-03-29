@@ -14,8 +14,6 @@ Date: March 2026
 
 import json
 import os
-import time
-from datetime import datetime
 from typing import Optional
 
 import requests
@@ -220,7 +218,7 @@ def risk_badge(category: str) -> str:
 
 with st.sidebar:
     st.image("https://developer.nvidia.com/favicon.ico", width=40)
-    st.markdown(f"### Cardiology Intelligence Agent")
+    st.markdown("### Cardiology Intelligence Agent")
     st.markdown(f'<span style="color:{NVIDIA_THEME["text_secondary"]};">RAG-powered cardiovascular CDS</span>', unsafe_allow_html=True)
     st.divider()
 
@@ -830,14 +828,14 @@ with tab_arrhythmia:
 
         if "fibrillation" in arr_type.lower() or "flutter" in arr_type.lower():
             if arr_cha == 0:
-                st.markdown(f'<div class="success-box">No anticoagulation needed (CHA2DS2-VASc = 0)</div>', unsafe_allow_html=True)
+                st.markdown('<div class="success-box">No anticoagulation needed (CHA2DS2-VASc = 0)</div>', unsafe_allow_html=True)
             elif arr_cha == 1:
-                st.markdown(f'<div class="info-box">Consider anticoagulation -- shared decision-making</div>', unsafe_allow_html=True)
+                st.markdown('<div class="info-box">Consider anticoagulation -- shared decision-making</div>', unsafe_allow_html=True)
             else:
-                st.markdown(f'<div class="warning-box">Anticoagulation recommended -- prefer DOAC over warfarin</div>', unsafe_allow_html=True)
+                st.markdown('<div class="warning-box">Anticoagulation recommended -- prefer DOAC over warfarin</div>', unsafe_allow_html=True)
 
             if arr_hb >= 3:
-                st.markdown(f'<div class="warning-box">Elevated bleeding risk (HAS-BLED >= 3) -- address modifiable factors but do NOT withhold anticoagulation</div>', unsafe_allow_html=True)
+                st.markdown('<div class="warning-box">Elevated bleeding risk (HAS-BLED >= 3) -- address modifiable factors but do NOT withhold anticoagulation</div>', unsafe_allow_html=True)
 
         st.subheader("Rate vs. Rhythm Control")
         arr_strategy = st.radio("Management Strategy", ["Rate control", "Rhythm control"], key="arr_strategy")
@@ -951,7 +949,7 @@ with tab_imaging:
 
         if st.button("Analyze Nuclear Study", key="btn_nuc", type="primary"):
             if nuc_sds < 2:
-                st.markdown(f'<div class="success-box">Normal perfusion -- low risk for ischemia</div>', unsafe_allow_html=True)
+                st.markdown('<div class="success-box">Normal perfusion -- low risk for ischemia</div>', unsafe_allow_html=True)
             elif nuc_sds <= 6:
                 st.markdown(f'<div class="warning-box">Mild-moderate ischemia (SDS={nuc_sds}) -- consider optimizing medical therapy</div>', unsafe_allow_html=True)
             else:
@@ -1009,15 +1007,15 @@ with tab_onc:
                         f'<strong>Severe CTRCD:</strong> LVEF < 40% -- Hold cardiotoxic therapy. Initiate HF treatment (GDMT). Urgent cardiology referral.</div>',
                         unsafe_allow_html=True)
         elif lvef_drop >= 10 and onc_lvef_curr < 50:
-            st.markdown(f'<div class="warning-box"><strong>Moderate CTRCD:</strong> LVEF drop >= 10% to below 50% -- '
-                        f'Consider holding therapy. Start cardioprotective agents. Close monitoring.</div>',
+            st.markdown('<div class="warning-box"><strong>Moderate CTRCD:</strong> LVEF drop >= 10% to below 50% -- '
+                        'Consider holding therapy. Start cardioprotective agents. Close monitoring.</div>',
                         unsafe_allow_html=True)
         elif gls_rel_change < -15:
-            st.markdown(f'<div class="warning-box"><strong>Subclinical CTRCD:</strong> GLS relative decrease > 15% -- '
-                        f'Consider cardioprotective agents (ACEi + beta-blocker). Repeat in 2-4 weeks.</div>',
+            st.markdown('<div class="warning-box"><strong>Subclinical CTRCD:</strong> GLS relative decrease > 15% -- '
+                        'Consider cardioprotective agents (ACEi + beta-blocker). Repeat in 2-4 weeks.</div>',
                         unsafe_allow_html=True)
         else:
-            st.markdown(f'<div class="success-box">No significant cardiotoxicity detected. Continue surveillance per protocol.</div>',
+            st.markdown('<div class="success-box">No significant cardiotoxicity detected. Continue surveillance per protocol.</div>',
                         unsafe_allow_html=True)
 
         if onc_trop > 14:

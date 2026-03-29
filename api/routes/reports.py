@@ -14,10 +14,9 @@ import io
 import json
 import uuid
 from datetime import datetime, timezone
-from typing import Dict, List, Optional
+from typing import Optional
 
 from fastapi import APIRouter, HTTPException, Request
-from fastapi.responses import JSONResponse, PlainTextResponse
 from loguru import logger
 from pydantic import BaseModel, Field
 
@@ -76,7 +75,7 @@ def _generate_markdown_header(title: str, patient_id: Optional[str] = None) -> s
         f"# {title}",
         "",
         f"**Generated:** {now}",
-        f"**Agent:** Cardiology Intelligence Agent v1.0.0",
+        "**Agent:** Cardiology Intelligence Agent v1.0.0",
     ]
     if patient_id:
         lines.append(f"**Patient ID:** {patient_id}")
@@ -101,8 +100,8 @@ def _risk_assessment_markdown(data: dict) -> str:
         section = [
             f"## {calc}",
             "",
-            f"| Metric | Value |",
-            f"|--------|-------|",
+            "| Metric | Value |",
+            "|--------|-------|",
             f"| Score | **{score}** |",
             f"| Risk Category | **{category}** |",
             f"| Interpretation | {interp} |",

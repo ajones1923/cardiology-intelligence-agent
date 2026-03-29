@@ -39,7 +39,7 @@ import logging
 import sys
 import time
 from pathlib import Path
-from typing import List, Optional
+from typing import List
 
 # ---------------------------------------------------------------------------
 # Path setup
@@ -52,7 +52,6 @@ from src.knowledge import (
     CARDIAC_DRUG_CLASSES,
     CARDIOVASCULAR_GENES,
     IMAGING_MODALITIES,
-    GUIDELINE_RECOMMENDATIONS,
 )
 from src.ingest.imaging_parser import ImagingParser
 from src.ingest.ecg_parser import ECGParser

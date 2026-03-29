@@ -9,7 +9,6 @@ PHENOTYPE_GENE_MAP reverse index.
 """
 
 import pytest
-from unittest.mock import MagicMock
 
 from src.models import CrossModalTrigger, SeverityLevel
 from src.cross_modal import (
