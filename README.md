@@ -151,3 +151,11 @@ uvicorn api.main:app --host 0.0.0.0 --port 8126 --workers 2
 - **API:** FastAPI + Uvicorn
 - **Monitoring:** Prometheus metrics
 - **Compute:** NVIDIA DGX Spark
+
+## License
+
+This project is licensed under the [Apache License 2.0](LICENSE).
+
+## Author
+
+Adam Jones -- HCLS AI Factory, March 2026
